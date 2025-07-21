@@ -10,6 +10,9 @@ const observerSections = new IntersectionObserver((entries) => {
             document.querySelector(`.nav-anchor a[href="#${entry.target.id}"]`)
                 ?.classList.add('text-red-500');
             entry.target.classList.add('active');
+
+            // Stop observing once the element is in view
+            observerSections.unobserve(entry.target);
         }
     })
 }, { threshold: 0.5, rootMargin: '-00% 0% -70% 0%' });
